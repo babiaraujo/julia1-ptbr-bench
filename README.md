@@ -6,26 +6,53 @@ Teste independente do [SupersonicLabs/Julia-1](https://huggingface.co/Supersonic
 
 ## Resultado em uma frase
 
-No roteamento, a redação do rótulo pesa mais que o modelo: com os rótulos originais ele acertou 3 de 16 mensagens novas, com rótulos reescritos acertou 12 de 16. No sentimento, nenhuma redação de rótulo passou de 3 acertos em 8.
+Com mensagens em pt-BR, a redação dos rótulos muda muito o acerto nas duas tarefas testadas, e nenhuma redação ganhou nas duas: nas mensagens novas, a melhor no roteamento foi a pior no sentimento.
 
 ## O que foi medido
 
-| Teste | Rótulo original | Rótulo reescrito |
+Mensagens novas (escritas depois dos primeiros testes, gabarito definido antes de rodar):
+
+| Rótulos | Roteamento (16) | Sentimento (6) |
 |---|---|---|
-| Roteamento em 6 times, 24 mensagens | 12/24 | 20/24 |
-| Roteamento, 16 mensagens novas | 3/16 | 12/16 |
-| Sentimento (3 classes), 8 mensagens | 2/8 | 3/8 |
-| Sentimento, 6 mensagens novas | 3/6 | 2/6 |
+| Descrição original em pt | 3/16 | 3/6 |
+| Rótulo curto em pt | 7/16 | 3/6 |
+| Pergunta e rótulos em inglês (tradução direta dos originais) | 10/16 | 6/6 |
+| Descrição reescrita em pt (feita depois de ver os erros) | 12/16 | 2/6 |
 
-Outros achados, todos com os rótulos originais:
+Primeiro conjunto de mensagens (24 de roteamento, 8 de sentimento):
 
-- Com os rótulos originais, 13 das 16 mensagens novas foram roteadas para `matricula`. Duas descrições de time citavam "curso", e o modelo casou a palavra.
+| Rótulos | Roteamento (24) | Sentimento (8) |
+|---|---|---|
+| Descrição original em pt | 12/24 | 2/8 |
+| Rótulo curto em pt | 9/24 | 5/8 |
+| Pergunta e rótulos em inglês | 15/24 | 5/8 |
+| Descrição reescrita em pt | 20/24 | 3/8 |
+
+A comparação mais limpa é a descrição original contra a tradução para o inglês: as duas existiam antes das mensagens novas e nenhuma foi ajustada a elas. Mesmo assim, 6/6 em 6 mensagens é pouco (intervalo de 95% de Wilson de 61% a 100%).
+
+Outros achados:
+
+- Com a descrição original, 13 das 16 mensagens novas foram roteadas para `matricula`. Três descrições citavam "curso", mas a versão em inglês repete "course" nos mesmos três times e acertou 10/16, então a palavra sozinha não explica o erro.
 - Invertendo só a ordem das opções, 8 das 24 respostas de roteamento mudam. A `max_probability` não serve como sinal de confiança.
 - Sim ou não: a probabilidade muda mais com o rótulo do que com a mensagem. Em "pode tirar meu número da lista", deu 0,97 com rótulo literal e 0,12 com "Sim/Não".
-- Traduzindo as mensagens para o inglês, o roteamento subiu de 12/24 para 18/24 e o sentimento de 2/8 para 7/8. A tradução também removeu gírias e erros de digitação, então essa comparação mistura idioma com limpeza do texto.
+- Traduzindo também as mensagens para o inglês, o roteamento foi a 18/24 e o sentimento a 7/8. A tradução removeu gírias e erros de digitação, então isso mistura idioma com limpeza do texto.
 - Latência mediana entre 18 e 35 ms por decisão em CPU (Apple M5, 4 threads), variando entre as rodadas.
 
 Todos os números caso a caso estão em [`julia1_ptbr_results.json`](julia1_ptbr_results.json).
+
+## Rodando
+
+Saída real dos scripts (os logs completos, com cores ANSI, estão em [`assets/terminal/`](assets/terminal/)):
+
+![Ambiente e hash dos pesos](assets/terminal/01-ambiente.png)
+
+![Roteamento caso a caso](assets/terminal/02-casos-ptbr.png)
+
+![Mensagens novas com 4 redações de rótulo](assets/terminal/04-msgs-novas.png)
+
+![Reprodução oficial](assets/terminal/05-reproducao-oficial.png)
+
+Gráficos por tema em [`assets/thread/`](assets/thread/): roteamento, sentimento, reprodução, o que já dá para afirmar sobre treino e margem de erro por tamanho de amostra.
 
 ## A instalação está correta
 
@@ -34,7 +61,7 @@ O script oficial `scripts/reproduce_typed.py` do repositório do modelo deu 426/
 ## Limitações
 
 - Amostra pequena: 54 mensagens pt-BR, escritas à mão. Um caso de sentimento vale 12,5 pontos percentuais. Leitura indicativa, não conclusiva.
-- O gabarito foi escrito antes de rodar. Os rótulos reescritos foram feitos depois de ver os erros, e as 16 mensagens novas foram escritas depois da troca, para medir se o ganho generaliza.
+- O gabarito foi escrito antes de rodar. Os rótulos reescritos e as mensagens novas foram feitos pela mesma pessoa, depois de ver os erros, então o ganho do rótulo reescrito é indício, não prova de generalização.
 - Alguns gabaritos são discutíveis (por exemplo, "minha mãe perdeu o emprego, não vou conseguir continuar pagando" marcada como cancelamento).
 - Nada aqui testa fine-tuning. É só o modelo como foi publicado.
 
@@ -68,4 +95,6 @@ O `run_new.sh` roda a variação de rótulos e as mensagens novas, e o `save_res
 | `input_ablation.py` | Variações de rótulo e pergunta nas mesmas mensagens |
 | `holdout.py` | Mensagens novas, rótulo original contra reescrito |
 | `save_results.py` | Consolida tudo em JSON |
-| `make_chart.py` | Gera a imagem em `assets/` |
+| `make_chart.py` | Gera os gráficos em `assets/` e `assets/thread/` a partir do JSON |
+| `capture_terminal.sh` | Roda as etapas e grava a saída real em `assets/terminal/*.log` |
+| `render_terminal.py` | Converte os logs em PNG com cara de terminal (Chrome headless) |

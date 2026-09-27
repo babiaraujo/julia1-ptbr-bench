@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T16:37:42+00:00",
+  "generated_at": "2026-09-27T17:40:50+00:00",
   "model": "SupersonicLabs/Julia-1",
   "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
   "runtime": {
@@ -40,7 +40,8 @@
   },
   "notes": [
     "Gabarito escrito antes de rodar.",
-    "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois da troca e mede a generalização.",
+    "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois, pela mesma pessoa, então é indício e não prova.",
+    "Rótulos 'en' são tradução direta dos originais, escritos antes de ver erros; a pergunta também vai em inglês.",
     "Amostra pequena (54 mensagens pt-BR), leitura indicativa."
   ],
   "first_test_ptbr": {
@@ -438,8 +439,8 @@
     ],
     "latency_ms": {
       "n": 90,
-      "median": 18.4,
-      "p95": 20.6
+      "median": 34.0,
+      "p95": 40.1
     }
   },
   "label_variants": {
@@ -1939,6 +1940,212 @@
         }
       ]
     },
+    "routing_short_pt": {
+      "correct": 7,
+      "total": 16,
+      "accuracy": 0.4375,
+      "cases": [
+        {
+          "message": "o pix que eu fiz não caiu ainda",
+          "gold": "financeiro",
+          "pred": "academico",
+          "confidence": 0.4334
+        },
+        {
+          "message": "dá pra parcelar a matrícula no cartão?",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.9945
+        },
+        {
+          "message": "minha fatura veio com valor diferente do combinado",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.4203
+        },
+        {
+          "message": "preciso autenticar o diploma do ensino médio pra enviar?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9978
+        },
+        {
+          "message": "até quando posso fazer a inscrição do vestibular?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9838
+        },
+        {
+          "message": "mandei a foto do comprovante de residência, chegou?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.771
+        },
+        {
+          "message": "qual a porcentagem de desconto em fisioterapia?",
+          "gold": "bolsa",
+          "pred": "bolsa",
+          "confidence": 0.8062
+        },
+        {
+          "message": "essa bolsa vale pro curso todo ou só primeiro semestre?",
+          "gold": "bolsa",
+          "pred": "bolsa",
+          "confidence": 0.5297
+        },
+        {
+          "message": "o código de verificação não chega no meu celular",
+          "gold": "acesso",
+          "pred": "academico",
+          "confidence": 0.5877
+        },
+        {
+          "message": "minha conta foi bloqueada depois de errar a senha",
+          "gold": "acesso",
+          "pred": "cancelamento",
+          "confidence": 0.9981
+        },
+        {
+          "message": "quero desistir da vaga e receber o que paguei",
+          "gold": "cancelamento",
+          "pred": "cancelamento",
+          "confidence": 0.7853
+        },
+        {
+          "message": "como faço pra trancar e não pagar mais?",
+          "gold": "cancelamento",
+          "pred": "cancelamento",
+          "confidence": 0.9607
+        },
+        {
+          "message": "administração tem aula sábado?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.763
+        },
+        {
+          "message": "o curso de TI tem estágio obrigatório?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.9193
+        },
+        {
+          "message": "quantas horas por semana de aula tem no EAD?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.8839
+        },
+        {
+          "message": "o curso é reconhecido pelo MEC?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.7308
+        }
+      ]
+    },
+    "routing_question_labels_en": {
+      "correct": 10,
+      "total": 16,
+      "accuracy": 0.625,
+      "cases": [
+        {
+          "message": "o pix que eu fiz não caiu ainda",
+          "gold": "financeiro",
+          "pred": "academico",
+          "confidence": 0.9821
+        },
+        {
+          "message": "dá pra parcelar a matrícula no cartão?",
+          "gold": "financeiro",
+          "pred": "academico",
+          "confidence": 0.9546
+        },
+        {
+          "message": "minha fatura veio com valor diferente do combinado",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.4451
+        },
+        {
+          "message": "preciso autenticar o diploma do ensino médio pra enviar?",
+          "gold": "matricula",
+          "pred": "academico",
+          "confidence": 0.9687
+        },
+        {
+          "message": "até quando posso fazer a inscrição do vestibular?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.895
+        },
+        {
+          "message": "mandei a foto do comprovante de residência, chegou?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9754
+        },
+        {
+          "message": "qual a porcentagem de desconto em fisioterapia?",
+          "gold": "bolsa",
+          "pred": "bolsa",
+          "confidence": 0.6746
+        },
+        {
+          "message": "essa bolsa vale pro curso todo ou só primeiro semestre?",
+          "gold": "bolsa",
+          "pred": "bolsa",
+          "confidence": 0.9966
+        },
+        {
+          "message": "o código de verificação não chega no meu celular",
+          "gold": "acesso",
+          "pred": "cancelamento",
+          "confidence": 0.5106
+        },
+        {
+          "message": "minha conta foi bloqueada depois de errar a senha",
+          "gold": "acesso",
+          "pred": "cancelamento",
+          "confidence": 0.5407
+        },
+        {
+          "message": "quero desistir da vaga e receber o que paguei",
+          "gold": "cancelamento",
+          "pred": "cancelamento",
+          "confidence": 0.9179
+        },
+        {
+          "message": "como faço pra trancar e não pagar mais?",
+          "gold": "cancelamento",
+          "pred": "cancelamento",
+          "confidence": 0.929
+        },
+        {
+          "message": "administração tem aula sábado?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.999
+        },
+        {
+          "message": "o curso de TI tem estágio obrigatório?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 1.0
+        },
+        {
+          "message": "quantas horas por semana de aula tem no EAD?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9999
+        },
+        {
+          "message": "o curso é reconhecido pelo MEC?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9254
+        }
+      ]
+    },
     "routing_clean": {
       "correct": 12,
       "total": 16,
@@ -2085,6 +2292,92 @@
         }
       ]
     },
+    "sentiment_short_pt": {
+      "correct": 3,
+      "total": 6,
+      "accuracy": 0.5,
+      "cases": [
+        {
+          "message": "valeu demais pela ajuda, vcs são top",
+          "gold": "positivo",
+          "pred": "positivo",
+          "confidence": 0.8508
+        },
+        {
+          "message": "fiquei muito feliz com o desconto",
+          "gold": "positivo",
+          "pred": "positivo",
+          "confidence": 0.9953
+        },
+        {
+          "message": "qual o telefone da secretaria?",
+          "gold": "neutro",
+          "pred": "positivo",
+          "confidence": 0.4422
+        },
+        {
+          "message": "preciso levar documento original no dia?",
+          "gold": "neutro",
+          "pred": "positivo",
+          "confidence": 0.6197
+        },
+        {
+          "message": "já é a terceira vez que peço e nada",
+          "gold": "negativo",
+          "pred": "positivo",
+          "confidence": 0.6517
+        },
+        {
+          "message": "to decepcionado, prometeram uma coisa e fizeram outra",
+          "gold": "negativo",
+          "pred": "negativo",
+          "confidence": 0.9323
+        }
+      ]
+    },
+    "sentiment_question_labels_en": {
+      "correct": 6,
+      "total": 6,
+      "accuracy": 1.0,
+      "cases": [
+        {
+          "message": "valeu demais pela ajuda, vcs são top",
+          "gold": "positivo",
+          "pred": "positivo",
+          "confidence": 0.6119
+        },
+        {
+          "message": "fiquei muito feliz com o desconto",
+          "gold": "positivo",
+          "pred": "positivo",
+          "confidence": 0.9999
+        },
+        {
+          "message": "qual o telefone da secretaria?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.9993
+        },
+        {
+          "message": "preciso levar documento original no dia?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.7483
+        },
+        {
+          "message": "já é a terceira vez que peço e nada",
+          "gold": "negativo",
+          "pred": "negativo",
+          "confidence": 0.6328
+        },
+        {
+          "message": "to decepcionado, prometeram uma coisa e fizeram outra",
+          "gold": "negativo",
+          "pred": "negativo",
+          "confidence": 0.6296
+        }
+      ]
+    },
     "sentiment_clean": {
       "correct": 2,
       "total": 6,
@@ -2130,7 +2423,7 @@
     }
   },
   "official_reproduction": {
-    "source": ".julia/typed-cpu-133126/results.json",
+    "source": ".julia/typed-cpu-capture-143714/results.json",
     "by_type": {
       "choice": {
         "count": 600,

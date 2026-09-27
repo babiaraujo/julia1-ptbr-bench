@@ -1,0 +1,64 @@
+[1;32m$[0m .julia/.venv/bin/python -u run_ptbr.py .julia/Julia-1
+[32mOK [0m roteamento  0.85  esperado=financeiro   modelo=financeiro   paguei o boleto ontem e ainda aparece como pendente
+[32mOK [0m roteamento  0.71  esperado=financeiro   modelo=financeiro   fui cobrado duas vezes no cartão esse mês
+[32mOK [0m roteamento  1.00  esperado=financeiro   modelo=financeiro   qual a chave pix pra pagar a primeira mensalidade?
+[32mOK [0m roteamento  0.60  esperado=financeiro   modelo=financeiro   o boleto de outubro nao chegou no meu email
+[32mOK [0m roteamento  1.00  esperado=matricula    modelo=matricula    quais documentos eu preciso mandar pra fazer a matrícula?
+[32mOK [0m roteamento  0.99  esperado=matricula    modelo=matricula    já mandei meu RG e o histórico, falta alguma coisa?
+[32mOK [0m roteamento  1.00  esperado=matricula    modelo=matricula    quando é a prova do vestibular de administração?
+[32mOK [0m roteamento  0.55  esperado=bolsa        modelo=bolsa        quanto fica a mensalidade de enfermagem com a bolsa?
+[31mERR[0m roteamento  0.98  esperado=bolsa        modelo=matricula    tem desconto maior pra psicologia noturno?
+[31mERR[0m roteamento  0.83  esperado=bolsa        modelo=matricula    vi que na outra faculdade tá mais barato, vcs cobrem?
+[31mERR[0m roteamento  0.51  esperado=acesso       modelo=cancelamento esqueci minha senha do portal do aluno
+[31mERR[0m roteamento  0.93  esperado=acesso       modelo=matricula    o app não abre, fica só carregando
+[31mERR[0m roteamento  0.57  esperado=acesso       modelo=matricula    não consigo entrar na plataforma, diz usuário inválido
+[32mOK [0m roteamento  0.81  esperado=cancelamento modelo=cancelamento quero cancelar minha bolsa
+[32mOK [0m roteamento  0.76  esperado=cancelamento modelo=cancelamento desisti do curso, como faço pra pegar meu dinheiro de volta?
+[31mERR[0m roteamento  1.00  esperado=academico    modelo=matricula    o curso de direito é presencial ou EAD?
+[31mERR[0m roteamento  1.00  esperado=academico    modelo=matricula    quantos anos dura o curso de engenharia civil?
+[31mERR[0m roteamento  1.00  esperado=academico    modelo=matricula    o diploma do EAD vale igual ao presencial?
+[32mOK [0m roteamento  0.99  esperado=financeiro   modelo=financeiro   mano o negocio de pagar ta dando erro no cartao
+[31mERR[0m roteamento  0.51  esperado=financeiro   modelo=matricula    n consigo logar e o boleto vence amanha, preciso da 2 via
+[31mERR[0m roteamento  0.91  esperado=academico    modelo=matricula    não quero cancelar não, só quero saber se consigo trocar pro noturno
+[31mERR[0m roteamento  0.98  esperado=cancelamento modelo=financeiro   minha mãe perdeu o emprego, não vou conseguir continuar pagando
+[32mOK [0m roteamento  1.00  esperado=matricula    modelo=matricula    se eu mandar os documentos hoje ainda pego a bolsa de 60%?
+[31mERR[0m roteamento  0.48  esperado=bolsa        modelo=academico    to pensando em desistir pq achei caro, tem como baixar o valor?
+[31mERR[0m urgência    0.89  esperado=0            modelo=1            queria saber mais sobre o curso de nutrição, sem pressa
+[31mERR[0m urgência    0.61  esperado=0            modelo=1            vocês têm curso de gastronomia?
+[31mERR[0m urgência    0.98  esperado=0            modelo=2            o que é a nota de corte do vestibular?
+[32mOK [0m urgência    0.82  esperado=1            modelo=1            minha matrícula fecha sexta que vem, preciso mandar os documentos
+[32mOK [0m urgência    1.00  esperado=1            modelo=1            gostaria de ver a grade antes de decidir, até o fim do mês
+[32mOK [0m urgência    0.99  esperado=1            modelo=1            recebi um email estranho sobre renovação, podem verificar essa semana?
+[32mOK [0m urgência    0.46  esperado=2            modelo=2            o boleto vence HOJE e o link não funciona!!!
+[32mOK [0m urgência    0.77  esperado=2            modelo=2            a prova é amanhã e não recebi o local
+[32mOK [0m urgência    0.63  esperado=2            modelo=2            fui bloqueado do portal e tenho entrega de trabalho em 2 horas
+[31mERR[0m urgência    0.62  esperado=2            modelo=1            urgente: cobraram 3x no meu cartão agora
+[32mOK [0m sim/não     0.98  esperado=True         modelo=True         quero fechar a matrícula hoje, me manda o link  [O aluno quer se matricular?]
+[32mOK [0m sim/não     0.97  esperado=True         modelo=True         bora, pode garantir minha vaga em administração  [O aluno quer se matricular?]
+[31mERR[0m sim/não     0.91  esperado=False        modelo=True         só estou pesquisando por enquanto, obrigado  [O aluno quer se matricular?]
+[32mOK [0m sim/não     0.17  esperado=False        modelo=False        achei caro, não vou fazer não  [O aluno quer se matricular?]
+[31mERR[0m sim/não     0.06  esperado=True         modelo=False        o atendimento de vocês é péssimo, ninguém responde  [A mensagem é uma reclamação?]
+[32mOK [0m sim/não     0.12  esperado=False        modelo=False        adorei, vocês foram super rápidos  [A mensagem é uma reclamação?]
+[31mERR[0m sim/não     0.09  esperado=True         modelo=False        nossa que ótimo, esperei só três semanas pra ter resposta  [A mensagem é uma reclamação?]
+[32mOK [0m sim/não     0.12  esperado=False        modelo=False        qual o horário de atendimento?  [A mensagem é uma reclamação?]
+[31mERR[0m sim/não     0.20  esperado=True         modelo=False        meu nome é Ana e meu cpf é 123.456.789-00  [A mensagem contém dados pessoais?]
+[32mOK [0m sim/não     0.47  esperado=False        modelo=False        quanto custa o curso de pedagogia?  [A mensagem contém dados pessoais?]
+[31mERR[0m sim/não     0.12  esperado=True         modelo=False        não tenho interesse, pode tirar meu número da lista  [O aluno pediu para não ser mais contatado?]
+[32mOK [0m sim/não     0.18  esperado=False        modelo=False        pode me ligar amanhã depois das 18h  [O aluno pediu para não ser mais contatado?]
+[31mERR[0m sentimento  0.70  esperado=positivo     modelo=neutro       muito obrigada, consegui minha bolsa!!
+[31mERR[0m sentimento  0.94  esperado=positivo     modelo=neutro       amei o atendimento, recomendo
+[32mOK [0m sentimento  1.00  esperado=neutro       modelo=neutro       qual o endereço do campus centro?
+[32mOK [0m sentimento  0.94  esperado=neutro       modelo=neutro       a aula começa que dia?
+[31mERR[0m sentimento  0.76  esperado=negativo     modelo=neutro       to muito chateado, ninguém resolve meu problema
+[31mERR[0m sentimento  0.99  esperado=negativo     modelo=neutro       que palhaçada, cobraram errado de novo
+[31mERR[0m sentimento  0.90  esperado=negativo     modelo=positivo     parabéns pela demora, ótimo serviço 👏
+[31mERR[0m sentimento  0.64  esperado=positivo     modelo=neutro       não é que foi bom mesmo? achei que ia dar errado
+routing         12/24
+routing easy    10/17
+routing med+hrd 2/7
+routing stable  16/24
+urgency         6/10
+yes/no literal  6/12
+yes/no Sim/Não  7/12
+sentiment       2/8
+latency         {'n': 90, 'median': 34.0, 'p95': 40.1}

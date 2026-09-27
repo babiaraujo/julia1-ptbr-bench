@@ -1,0 +1,14 @@
+[1;32m$[0m cd .julia/Julia-1 && ../.venv/bin/python -u scripts/reproduce_typed.py --output ../../.julia/typed-cpu-capture-143714 --dataset ../../.julia/typed-cpu-131831/test-00000-of-00001.parquet | grep -E 'done|by_type|weights_sha256'; cd - >/dev/null
+{"mode": "original-criteria", "done": 200, "total": 2000}
+{"mode": "original-criteria", "done": 400, "total": 2000}
+{"mode": "original-criteria", "done": 600, "total": 2000}
+{"mode": "original-criteria", "done": 800, "total": 2000}
+{"mode": "original-criteria", "done": 1000, "total": 2000}
+{"mode": "original-criteria", "done": 1200, "total": 2000}
+{"mode": "original-criteria", "done": 1400, "total": 2000}
+{"mode": "original-criteria", "done": 1600, "total": 2000}
+{"mode": "original-criteria", "done": 1800, "total": 2000}
+{"mode": "original-criteria", "done": 2000, "total": 2000}
+{"mode": "original-criteria", "by_type": {"choice": {"count": 600, "correct": 426, "accuracy": 0.71}, "noul": {"count": 600, "correct": 483, "accuracy": 0.805}, "score": {"count": 800, "correct": 542, "accuracy": 0.6775}}, "elapsed_seconds": 137.1804727079998}
+  "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
+    "by_type": {

@@ -1,0 +1,8 @@
+[1;32m$[0m .julia/.venv/bin/python -u input_ablation.py .julia/Julia-1
+roteamento A original        12/24  previsões={'matricula': 13, 'financeiro': 6, 'cancelamento': 3}
+roteamento B rótulos en      15/24  previsões={'academico': 11, 'matricula': 4, 'financeiro': 3}
+roteamento C rótulos limpos  20/24  previsões={'financeiro': 10, 'matricula': 4, 'acesso': 3}
+roteamento D sem pergunta    13/24  previsões={'matricula': 10, 'financeiro': 7, 'cancelamento': 2}
+sentimento A original        2/8  previsões={'neutro': 7, 'positivo': 1}
+sentimento B rótulos en      5/8  previsões={'neutro': 4, 'positivo': 3, 'negativo': 1}
+sentimento C rótulos limpos  3/8  previsões={'negativo': 6, 'neutro': 2}

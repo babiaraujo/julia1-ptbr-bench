@@ -1,0 +1,6 @@
+[1;32m$[0m .julia/.venv/bin/python -c 'import sys, torch, transformers; print("python", sys.version.split()[0]); print("torch", torch.__version__); print("transformers", transformers.__version__)'; sysctl -n machdep.cpu.brand_string; shasum -a 256 .julia/Julia-1/model.safetensors
+python 3.12.9
+torch 2.14.0
+transformers 5.0.0
+Apple M5
+df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72  .julia/Julia-1/model.safetensors

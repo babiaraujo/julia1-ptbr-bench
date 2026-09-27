@@ -1,0 +1,9 @@
+[1;32m$[0m .julia/.venv/bin/python -u holdout.py .julia/Julia-1
+holdout roteamento original   3/16  previsões={'matricula': 13, 'financeiro': 2, 'cancelamento': 1}
+holdout roteamento curto pt   7/16  previsões={'matricula': 9, 'cancelamento': 3, 'academico': 2}
+holdout roteamento ingles     10/16  previsões={'academico': 7, 'cancelamento': 4, 'matricula': 3}
+holdout roteamento reescrito  12/16  previsões={'academico': 5, 'financeiro': 5, 'matricula': 3}
+holdout sentimento original   3/6  previsões={'neutro': 5, 'positivo': 1}
+holdout sentimento curto pt   3/6  previsões={'positivo': 5, 'negativo': 1}
+holdout sentimento ingles     6/6  previsões={'positivo': 2, 'neutro': 2, 'negativo': 2}
+holdout sentimento reescrito  2/6  previsões={'neutro': 4, 'negativo': 2}

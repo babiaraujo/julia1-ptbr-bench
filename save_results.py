@@ -51,8 +51,12 @@ label_variants = {
 }
 holdout_results = {
     "routing_original": evaluate(holdout.HOLDOUT, q_pt, TEAMS),
+    "routing_short_pt": evaluate(holdout.HOLDOUT, q_pt, controls.SHORT_PT),
+    "routing_question_labels_en": evaluate(holdout.HOLDOUT, q_en, ab.TEAMS_EN),
     "routing_clean": evaluate(holdout.HOLDOUT, q_pt, ab.TEAMS_CLEAN),
     "sentiment_original": evaluate(holdout.SENT_HOLDOUT, qs_pt, SENTIMENT),
+    "sentiment_short_pt": evaluate(holdout.SENT_HOLDOUT, qs_pt, controls.SENT_SHORT_PT),
+    "sentiment_question_labels_en": evaluate(holdout.SENT_HOLDOUT, qs_en, ab.SENT_DESC_EN),
     "sentiment_clean": evaluate(holdout.SENT_HOLDOUT, qs_pt, ab.SENT_CLEAN),
 }
 
@@ -72,7 +76,8 @@ report = {
                    sentiment_original=SENTIMENT, sentiment_clean=ab.SENT_CLEAN),
     "notes": [
         "Gabarito escrito antes de rodar.",
-        "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois da troca e mede a generalização.",
+        "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois, pela mesma pessoa, então é indício e não prova.",
+        "Rótulos 'en' são tradução direta dos originais, escritos antes de ver erros; a pergunta também vai em inglês.",
         "Amostra pequena (54 mensagens pt-BR), leitura indicativa.",
     ],
     "first_test_ptbr": first_test,

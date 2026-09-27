@@ -1,4 +1,4 @@
-# Mensagens novas (não vistas) para checar se os rótulos limpos generalizam.
+# Mensagens novas (não vistas), com as 4 redações de rótulo.
 # Gabarito escrito antes de rodar.
 import sys
 from julia import load_model
@@ -32,8 +32,15 @@ SENT_HOLDOUT = [
     ("to decepcionado, prometeram uma coisa e fizeram outra", "negativo"),
 ]
 if __name__ == "__main__":
-    q = "Qual time deve atender esta mensagem do aluno?"
-    print("holdout roteamento original ", run(HOLDOUT, q, TEAMS))
-    print("holdout roteamento limpo    ", run(HOLDOUT, q, TEAMS_CLEAN))
-    print("holdout sentimento original ", run(SENT_HOLDOUT, "Qual o sentimento do aluno?", SENTIMENT))
-    print("holdout sentimento limpo    ", run(SENT_HOLDOUT, "Qual o sentimento do aluno?", SENT_CLEAN))
+    import controls
+    from input_ablation import SENT_DESC_EN, TEAMS_EN
+    q_pt, q_en = "Qual time deve atender esta mensagem do aluno?", "Which team should handle this student message?"
+    qs_pt, qs_en = "Qual o sentimento do aluno?", "What is the student's sentiment?"
+    print("holdout roteamento original  ", run(HOLDOUT, q_pt, TEAMS))
+    print("holdout roteamento curto pt  ", run(HOLDOUT, q_pt, controls.SHORT_PT))
+    print("holdout roteamento ingles    ", run(HOLDOUT, q_en, TEAMS_EN))
+    print("holdout roteamento reescrito ", run(HOLDOUT, q_pt, TEAMS_CLEAN))
+    print("holdout sentimento original  ", run(SENT_HOLDOUT, qs_pt, SENTIMENT))
+    print("holdout sentimento curto pt  ", run(SENT_HOLDOUT, qs_pt, controls.SENT_SHORT_PT))
+    print("holdout sentimento ingles    ", run(SENT_HOLDOUT, qs_en, SENT_DESC_EN))
+    print("holdout sentimento reescrito ", run(SENT_HOLDOUT, qs_pt, SENT_CLEAN))
