@@ -36,7 +36,7 @@ HOLD_KEYS = {"original": "{t}_original", "short_pt": "{t}_short_pt",
 LV_KEYS = {"original": "original_pt", "short_pt": "short_pt", "en": "labels_en_msg_pt", "clean": "clean_pt"}
 COLORS = {"original": GRAY, "short_pt": "#9aa9b5", "en": BLUE, "clean": GREEN}
 FOOT = ("SupersonicLabs/Julia-1 · CPU local, PyTorch 2.14 FP32, strict encoding, 1.024 tokens · "
-        "54 msgs de aluno em pt-BR escritas à mão, gabarito antes de rodar · 27/09/2026")
+        "54 msgs sintéticas em pt-BR geradas por IA, gabarito antes de rodar · 27/09/2026")
 
 
 def hold(task, variant):

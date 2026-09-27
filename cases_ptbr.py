@@ -1,4 +1,5 @@
 # Casos de teste em pt-BR para o Julia 1.
+# Mensagens sintéticas geradas por IA (Claude), não são mensagens reais de aluno.
 # Gabarito escrito antes de rodar o modelo. Contexto: atendimento de aluno
 # em marketplace de bolsas de estudo (mensagens estilo WhatsApp).
 

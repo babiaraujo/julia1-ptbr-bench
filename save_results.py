@@ -75,8 +75,9 @@ report = {
     "labels": dict(routing_original=TEAMS, routing_clean=ab.TEAMS_CLEAN,
                    sentiment_original=SENTIMENT, sentiment_clean=ab.SENT_CLEAN),
     "notes": [
+        "Mensagens sintéticas geradas por IA (Claude), não são mensagens reais de aluno.",
         "Gabarito escrito antes de rodar.",
-        "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois, pela mesma pessoa, então é indício e não prova.",
+        "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois, pelo mesmo autor (IA), então é indício e não prova.",
         "Rótulos 'en' são tradução direta dos originais, escritos antes de ver erros; a pergunta também vai em inglês.",
         "Amostra pequena (54 mensagens pt-BR), leitura indicativa.",
     ],

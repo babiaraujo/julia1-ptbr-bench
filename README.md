@@ -1,6 +1,6 @@
 # Julia 1 em pt-BR: bench rápido
 
-Teste independente do [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1) (lançado em 26/09/2026, [anúncio](https://supersoniclabs.ia.br/julia-1/)) com mensagens de atendimento de aluno em português do Brasil. O anúncio avalia pt-PT no MASSIVE, mas não pt-BR.
+Teste independente do [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1) (lançado em 26/09/2026, [anúncio](https://supersoniclabs.ia.br/julia-1/)) com mensagens sintéticas em português do Brasil, no estilo de atendimento de aluno, geradas por IA (Claude) para este teste. Não são mensagens reais. O anúncio avalia pt-PT no MASSIVE, mas não pt-BR.
 
 ![Resultados](assets/julia1-ptbr-resultados.png)
 
@@ -60,8 +60,9 @@ O script oficial `scripts/reproduce_typed.py` do repositório do modelo deu 426/
 
 ## Limitações
 
-- Amostra pequena: 54 mensagens pt-BR, escritas à mão. Um caso de sentimento vale 12,5 pontos percentuais. Leitura indicativa, não conclusiva.
-- O gabarito foi escrito antes de rodar. Os rótulos reescritos e as mensagens novas foram feitos pela mesma pessoa, depois de ver os erros, então o ganho do rótulo reescrito é indício, não prova de generalização.
+- Amostra pequena e sintética: 54 mensagens pt-BR geradas por IA (Claude) nesta análise, não mensagens reais de aluno. Um caso de sentimento vale 12,5 pontos percentuais. Leitura indicativa, não conclusiva.
+- Como o texto e o gabarito vêm de um modelo de linguagem, um classificador baseado em LLM pode concordar com o gabarito por compartilhar os mesmos vieses. Acerto alto aqui mostra que a base é resolvível, não que o modelo vai bem com mensagem real.
+- O gabarito foi escrito antes de rodar. Os rótulos reescritos e as mensagens novas foram feitos pelo mesmo autor (IA), depois de ver os erros, então o ganho do rótulo reescrito é indício, não prova de generalização.
 - Alguns gabaritos são discutíveis (por exemplo, "minha mãe perdeu o emprego, não vou conseguir continuar pagando" marcada como cancelamento).
 - Nada aqui testa fine-tuning. É só o modelo como foi publicado.
 
