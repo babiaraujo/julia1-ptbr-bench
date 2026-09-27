@@ -1,0 +1,2157 @@
+{
+  "generated_at": "2026-09-27T16:37:42+00:00",
+  "model": "SupersonicLabs/Julia-1",
+  "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
+  "runtime": {
+    "device": "cpu",
+    "strict_encoding": true,
+    "max_length": 1024,
+    "head_length": 512,
+    "torch": "2.14.0",
+    "transformers": "5.0.0"
+  },
+  "labels": {
+    "routing_original": {
+      "financeiro": "Pagamento, boleto, cobrança, mensalidade, Pix ou cartão",
+      "matricula": "Matrícula, envio de documentos, vestibular e inscrição no curso",
+      "bolsa": "Valor da bolsa, desconto, preço do curso e comparação de ofertas",
+      "acesso": "Login, senha, acesso ao portal do aluno ou ao aplicativo",
+      "cancelamento": "Desistência, cancelamento da bolsa ou pedido de reembolso",
+      "academico": "Dúvidas sobre o curso: grade, duração, modalidade, diploma e aulas"
+    },
+    "routing_clean": {
+      "financeiro": "Pagamento, boleto, cobrança, Pix ou cartão",
+      "matricula": "Envio de documentos, vestibular e prazo de inscrição",
+      "bolsa": "Valor da bolsa, desconto e preço",
+      "acesso": "Login, senha, portal ou aplicativo com erro",
+      "cancelamento": "Desistir, cancelar ou pedir reembolso",
+      "academico": "Grade, duração, modalidade EAD ou presencial, diploma e turno"
+    },
+    "sentiment_original": {
+      "positivo": "Satisfeito, animado ou agradecido",
+      "neutro": "Pergunta ou informação, sem emoção clara",
+      "negativo": "Insatisfeito, irritado, frustrado ou preocupado"
+    },
+    "sentiment_clean": {
+      "positivo": "Elogio, agradecimento ou alegria",
+      "neutro": "Pergunta objetiva, sem elogio nem reclamação",
+      "negativo": "Reclamação, raiva, ironia ou frustração"
+    }
+  },
+  "notes": [
+    "Gabarito escrito antes de rodar.",
+    "Rótulos 'clean' foram escritos depois de ver os erros; o holdout foi escrito depois da troca e mede a generalização.",
+    "Amostra pequena (54 mensagens pt-BR), leitura indicativa."
+  ],
+  "first_test_ptbr": {
+    "routing": [
+      {
+        "message": "paguei o boleto ontem e ainda aparece como pendente",
+        "gold": "financeiro",
+        "level": "easy",
+        "pred": "financeiro",
+        "conf": 0.852,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "fui cobrado duas vezes no cartão esse mês",
+        "gold": "financeiro",
+        "level": "easy",
+        "pred": "financeiro",
+        "conf": 0.707,
+        "pred_reversed": "financeiro"
+      },
+      {
+        "message": "qual a chave pix pra pagar a primeira mensalidade?",
+        "gold": "financeiro",
+        "level": "easy",
+        "pred": "financeiro",
+        "conf": 0.998,
+        "pred_reversed": "financeiro"
+      },
+      {
+        "message": "o boleto de outubro nao chegou no meu email",
+        "gold": "financeiro",
+        "level": "easy",
+        "pred": "financeiro",
+        "conf": 0.595,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+        "gold": "matricula",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 1.0,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+        "gold": "matricula",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.994,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "quando é a prova do vestibular de administração?",
+        "gold": "matricula",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.997,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+        "gold": "bolsa",
+        "level": "easy",
+        "pred": "bolsa",
+        "conf": 0.549,
+        "pred_reversed": "bolsa"
+      },
+      {
+        "message": "tem desconto maior pra psicologia noturno?",
+        "gold": "bolsa",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.978,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+        "gold": "bolsa",
+        "level": "medium",
+        "pred": "matricula",
+        "conf": 0.835,
+        "pred_reversed": "financeiro"
+      },
+      {
+        "message": "esqueci minha senha do portal do aluno",
+        "gold": "acesso",
+        "level": "easy",
+        "pred": "cancelamento",
+        "conf": 0.513,
+        "pred_reversed": "acesso"
+      },
+      {
+        "message": "o app não abre, fica só carregando",
+        "gold": "acesso",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.926,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "não consigo entrar na plataforma, diz usuário inválido",
+        "gold": "acesso",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.575,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "quero cancelar minha bolsa",
+        "gold": "cancelamento",
+        "level": "easy",
+        "pred": "cancelamento",
+        "conf": 0.813,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+        "gold": "cancelamento",
+        "level": "easy",
+        "pred": "cancelamento",
+        "conf": 0.755,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "o curso de direito é presencial ou EAD?",
+        "gold": "academico",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.997,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "quantos anos dura o curso de engenharia civil?",
+        "gold": "academico",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 1.0,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "o diploma do EAD vale igual ao presencial?",
+        "gold": "academico",
+        "level": "easy",
+        "pred": "matricula",
+        "conf": 0.999,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "mano o negocio de pagar ta dando erro no cartao",
+        "gold": "financeiro",
+        "level": "medium",
+        "pred": "financeiro",
+        "conf": 0.985,
+        "pred_reversed": "financeiro"
+      },
+      {
+        "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+        "gold": "financeiro",
+        "level": "hard",
+        "pred": "matricula",
+        "conf": 0.513,
+        "pred_reversed": "acesso"
+      },
+      {
+        "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+        "gold": "academico",
+        "level": "hard",
+        "pred": "matricula",
+        "conf": 0.91,
+        "pred_reversed": "cancelamento"
+      },
+      {
+        "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+        "gold": "cancelamento",
+        "level": "hard",
+        "pred": "financeiro",
+        "conf": 0.983,
+        "pred_reversed": "financeiro"
+      },
+      {
+        "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+        "gold": "matricula",
+        "level": "hard",
+        "pred": "matricula",
+        "conf": 0.997,
+        "pred_reversed": "matricula"
+      },
+      {
+        "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+        "gold": "bolsa",
+        "level": "hard",
+        "pred": "academico",
+        "conf": 0.478,
+        "pred_reversed": "bolsa"
+      }
+    ],
+    "urgency": [
+      {
+        "message": "queria saber mais sobre o curso de nutrição, sem pressa",
+        "gold": 0,
+        "pred": 1,
+        "expected": 1.06
+      },
+      {
+        "message": "vocês têm curso de gastronomia?",
+        "gold": 0,
+        "pred": 1,
+        "expected": 1.31
+      },
+      {
+        "message": "o que é a nota de corte do vestibular?",
+        "gold": 0,
+        "pred": 2,
+        "expected": 1.98
+      },
+      {
+        "message": "minha matrícula fecha sexta que vem, preciso mandar os documentos",
+        "gold": 1,
+        "pred": 1,
+        "expected": 1.01
+      },
+      {
+        "message": "gostaria de ver a grade antes de decidir, até o fim do mês",
+        "gold": 1,
+        "pred": 1,
+        "expected": 1.0
+      },
+      {
+        "message": "recebi um email estranho sobre renovação, podem verificar essa semana?",
+        "gold": 1,
+        "pred": 1,
+        "expected": 1.0
+      },
+      {
+        "message": "o boleto vence HOJE e o link não funciona!!!",
+        "gold": 2,
+        "pred": 2,
+        "expected": 1.28
+      },
+      {
+        "message": "a prova é amanhã e não recebi o local",
+        "gold": 2,
+        "pred": 2,
+        "expected": 1.59
+      },
+      {
+        "message": "fui bloqueado do portal e tenho entrega de trabalho em 2 horas",
+        "gold": 2,
+        "pred": 2,
+        "expected": 1.58
+      },
+      {
+        "message": "urgente: cobraram 3x no meu cartão agora",
+        "gold": 2,
+        "pred": 1,
+        "expected": 1.13
+      }
+    ],
+    "yes_no": [
+      {
+        "message": "quero fechar a matrícula hoje, me manda o link",
+        "question": "O aluno quer se matricular?",
+        "gold": true,
+        "p_true_literal": 0.722,
+        "p_true_ptbr": 0.979
+      },
+      {
+        "message": "bora, pode garantir minha vaga em administração",
+        "question": "O aluno quer se matricular?",
+        "gold": true,
+        "p_true_literal": 0.996,
+        "p_true_ptbr": 0.966
+      },
+      {
+        "message": "só estou pesquisando por enquanto, obrigado",
+        "question": "O aluno quer se matricular?",
+        "gold": false,
+        "p_true_literal": 1.0,
+        "p_true_ptbr": 0.907
+      },
+      {
+        "message": "achei caro, não vou fazer não",
+        "question": "O aluno quer se matricular?",
+        "gold": false,
+        "p_true_literal": 0.911,
+        "p_true_ptbr": 0.174
+      },
+      {
+        "message": "o atendimento de vocês é péssimo, ninguém responde",
+        "question": "A mensagem é uma reclamação?",
+        "gold": true,
+        "p_true_literal": 0.405,
+        "p_true_ptbr": 0.058
+      },
+      {
+        "message": "adorei, vocês foram super rápidos",
+        "question": "A mensagem é uma reclamação?",
+        "gold": false,
+        "p_true_literal": 0.93,
+        "p_true_ptbr": 0.121
+      },
+      {
+        "message": "nossa que ótimo, esperei só três semanas pra ter resposta",
+        "question": "A mensagem é uma reclamação?",
+        "gold": true,
+        "p_true_literal": 0.715,
+        "p_true_ptbr": 0.093
+      },
+      {
+        "message": "qual o horário de atendimento?",
+        "question": "A mensagem é uma reclamação?",
+        "gold": false,
+        "p_true_literal": 0.383,
+        "p_true_ptbr": 0.117
+      },
+      {
+        "message": "meu nome é Ana e meu cpf é 123.456.789-00",
+        "question": "A mensagem contém dados pessoais?",
+        "gold": true,
+        "p_true_literal": 0.08,
+        "p_true_ptbr": 0.2
+      },
+      {
+        "message": "quanto custa o curso de pedagogia?",
+        "question": "A mensagem contém dados pessoais?",
+        "gold": false,
+        "p_true_literal": 0.059,
+        "p_true_ptbr": 0.471
+      },
+      {
+        "message": "não tenho interesse, pode tirar meu número da lista",
+        "question": "O aluno pediu para não ser mais contatado?",
+        "gold": true,
+        "p_true_literal": 0.974,
+        "p_true_ptbr": 0.118
+      },
+      {
+        "message": "pode me ligar amanhã depois das 18h",
+        "question": "O aluno pediu para não ser mais contatado?",
+        "gold": false,
+        "p_true_literal": 0.663,
+        "p_true_ptbr": 0.179
+      }
+    ],
+    "sentiment": [
+      {
+        "message": "muito obrigada, consegui minha bolsa!!",
+        "gold": "positivo",
+        "pred": "neutro",
+        "conf": 0.697
+      },
+      {
+        "message": "amei o atendimento, recomendo",
+        "gold": "positivo",
+        "pred": "neutro",
+        "conf": 0.941
+      },
+      {
+        "message": "qual o endereço do campus centro?",
+        "gold": "neutro",
+        "pred": "neutro",
+        "conf": 1.0
+      },
+      {
+        "message": "a aula começa que dia?",
+        "gold": "neutro",
+        "pred": "neutro",
+        "conf": 0.942
+      },
+      {
+        "message": "to muito chateado, ninguém resolve meu problema",
+        "gold": "negativo",
+        "pred": "neutro",
+        "conf": 0.76
+      },
+      {
+        "message": "que palhaçada, cobraram errado de novo",
+        "gold": "negativo",
+        "pred": "neutro",
+        "conf": 0.993
+      },
+      {
+        "message": "parabéns pela demora, ótimo serviço 👏",
+        "gold": "negativo",
+        "pred": "positivo",
+        "conf": 0.899
+      },
+      {
+        "message": "não é que foi bom mesmo? achei que ia dar errado",
+        "gold": "positivo",
+        "pred": "neutro",
+        "conf": 0.643
+      }
+    ],
+    "latency_ms": {
+      "n": 90,
+      "median": 18.4,
+      "p95": 20.6
+    }
+  },
+  "label_variants": {
+    "routing": {
+      "original_pt": {
+        "correct": 12,
+        "total": 24,
+        "accuracy": 0.5,
+        "cases": [
+          {
+            "message": "paguei o boleto ontem e ainda aparece como pendente",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.852
+          },
+          {
+            "message": "fui cobrado duas vezes no cartão esse mês",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.7069
+          },
+          {
+            "message": "qual a chave pix pra pagar a primeira mensalidade?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9981
+          },
+          {
+            "message": "o boleto de outubro nao chegou no meu email",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.5954
+          },
+          {
+            "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9997
+          },
+          {
+            "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9944
+          },
+          {
+            "message": "quando é a prova do vestibular de administração?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9967
+          },
+          {
+            "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.5494
+          },
+          {
+            "message": "tem desconto maior pra psicologia noturno?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.9783
+          },
+          {
+            "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.8349
+          },
+          {
+            "message": "esqueci minha senha do portal do aluno",
+            "gold": "acesso",
+            "pred": "cancelamento",
+            "confidence": 0.5134
+          },
+          {
+            "message": "o app não abre, fica só carregando",
+            "gold": "acesso",
+            "pred": "matricula",
+            "confidence": 0.9259
+          },
+          {
+            "message": "não consigo entrar na plataforma, diz usuário inválido",
+            "gold": "acesso",
+            "pred": "matricula",
+            "confidence": 0.5748
+          },
+          {
+            "message": "quero cancelar minha bolsa",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.8133
+          },
+          {
+            "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.755
+          },
+          {
+            "message": "o curso de direito é presencial ou EAD?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9973
+          },
+          {
+            "message": "quantos anos dura o curso de engenharia civil?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9998
+          },
+          {
+            "message": "o diploma do EAD vale igual ao presencial?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9989
+          },
+          {
+            "message": "mano o negocio de pagar ta dando erro no cartao",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9851
+          },
+          {
+            "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.5126
+          },
+          {
+            "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9103
+          },
+          {
+            "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+            "gold": "cancelamento",
+            "pred": "financeiro",
+            "confidence": 0.9835
+          },
+          {
+            "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9969
+          },
+          {
+            "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+            "gold": "bolsa",
+            "pred": "academico",
+            "confidence": 0.4776
+          }
+        ]
+      },
+      "short_pt": {
+        "correct": 9,
+        "total": 24,
+        "accuracy": 0.375,
+        "cases": [
+          {
+            "message": "paguei o boleto ontem e ainda aparece como pendente",
+            "gold": "financeiro",
+            "pred": "cancelamento",
+            "confidence": 0.425
+          },
+          {
+            "message": "fui cobrado duas vezes no cartão esse mês",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.5244
+          },
+          {
+            "message": "qual a chave pix pra pagar a primeira mensalidade?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.7874
+          },
+          {
+            "message": "o boleto de outubro nao chegou no meu email",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.5313
+          },
+          {
+            "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 1.0
+          },
+          {
+            "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9624
+          },
+          {
+            "message": "quando é a prova do vestibular de administração?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9087
+          },
+          {
+            "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.879
+          },
+          {
+            "message": "tem desconto maior pra psicologia noturno?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.8199
+          },
+          {
+            "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.6426
+          },
+          {
+            "message": "esqueci minha senha do portal do aluno",
+            "gold": "acesso",
+            "pred": "academico",
+            "confidence": 0.462
+          },
+          {
+            "message": "o app não abre, fica só carregando",
+            "gold": "acesso",
+            "pred": "matricula",
+            "confidence": 0.9426
+          },
+          {
+            "message": "não consigo entrar na plataforma, diz usuário inválido",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.9755
+          },
+          {
+            "message": "quero cancelar minha bolsa",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.9528
+          },
+          {
+            "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.5344
+          },
+          {
+            "message": "o curso de direito é presencial ou EAD?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.7345
+          },
+          {
+            "message": "quantos anos dura o curso de engenharia civil?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.973
+          },
+          {
+            "message": "o diploma do EAD vale igual ao presencial?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9994
+          },
+          {
+            "message": "mano o negocio de pagar ta dando erro no cartao",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.7545
+          },
+          {
+            "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.6631
+          },
+          {
+            "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+            "gold": "academico",
+            "pred": "cancelamento",
+            "confidence": 0.6876
+          },
+          {
+            "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+            "gold": "cancelamento",
+            "pred": "matricula",
+            "confidence": 0.9554
+          },
+          {
+            "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+            "gold": "matricula",
+            "pred": "bolsa",
+            "confidence": 0.8863
+          },
+          {
+            "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+            "gold": "bolsa",
+            "pred": "financeiro",
+            "confidence": 0.9686
+          }
+        ]
+      },
+      "labels_en_msg_pt": {
+        "correct": 15,
+        "total": 24,
+        "accuracy": 0.625,
+        "cases": [
+          {
+            "message": "paguei o boleto ontem e ainda aparece como pendente",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9696
+          },
+          {
+            "message": "fui cobrado duas vezes no cartão esse mês",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9582
+          },
+          {
+            "message": "qual a chave pix pra pagar a primeira mensalidade?",
+            "gold": "financeiro",
+            "pred": "academico",
+            "confidence": 0.9701
+          },
+          {
+            "message": "o boleto de outubro nao chegou no meu email",
+            "gold": "financeiro",
+            "pred": "academico",
+            "confidence": 0.6146
+          },
+          {
+            "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9985
+          },
+          {
+            "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.8219
+          },
+          {
+            "message": "quando é a prova do vestibular de administração?",
+            "gold": "matricula",
+            "pred": "academico",
+            "confidence": 0.9282
+          },
+          {
+            "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9468
+          },
+          {
+            "message": "tem desconto maior pra psicologia noturno?",
+            "gold": "bolsa",
+            "pred": "academico",
+            "confidence": 0.9925
+          },
+          {
+            "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9985
+          },
+          {
+            "message": "esqueci minha senha do portal do aluno",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.9952
+          },
+          {
+            "message": "o app não abre, fica só carregando",
+            "gold": "acesso",
+            "pred": "academico",
+            "confidence": 0.4406
+          },
+          {
+            "message": "não consigo entrar na plataforma, diz usuário inválido",
+            "gold": "acesso",
+            "pred": "cancelamento",
+            "confidence": 0.9129
+          },
+          {
+            "message": "quero cancelar minha bolsa",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.4911
+          },
+          {
+            "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.9981
+          },
+          {
+            "message": "o curso de direito é presencial ou EAD?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9993
+          },
+          {
+            "message": "quantos anos dura o curso de engenharia civil?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9998
+          },
+          {
+            "message": "o diploma do EAD vale igual ao presencial?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9317
+          },
+          {
+            "message": "mano o negocio de pagar ta dando erro no cartao",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.8106
+          },
+          {
+            "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.9924
+          },
+          {
+            "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9318
+          },
+          {
+            "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+            "gold": "cancelamento",
+            "pred": "academico",
+            "confidence": 0.5583
+          },
+          {
+            "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9831
+          },
+          {
+            "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+            "gold": "bolsa",
+            "pred": "academico",
+            "confidence": 0.7996
+          }
+        ]
+      },
+      "clean_pt": {
+        "correct": 20,
+        "total": 24,
+        "accuracy": 0.8333,
+        "cases": [
+          {
+            "message": "paguei o boleto ontem e ainda aparece como pendente",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.909
+          },
+          {
+            "message": "fui cobrado duas vezes no cartão esse mês",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9835
+          },
+          {
+            "message": "qual a chave pix pra pagar a primeira mensalidade?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9985
+          },
+          {
+            "message": "o boleto de outubro nao chegou no meu email",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9858
+          },
+          {
+            "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9164
+          },
+          {
+            "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.475
+          },
+          {
+            "message": "quando é a prova do vestibular de administração?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.6125
+          },
+          {
+            "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9014
+          },
+          {
+            "message": "tem desconto maior pra psicologia noturno?",
+            "gold": "bolsa",
+            "pred": "financeiro",
+            "confidence": 0.4818
+          },
+          {
+            "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+            "gold": "bolsa",
+            "pred": "financeiro",
+            "confidence": 0.9951
+          },
+          {
+            "message": "esqueci minha senha do portal do aluno",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.9997
+          },
+          {
+            "message": "o app não abre, fica só carregando",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.6349
+          },
+          {
+            "message": "não consigo entrar na plataforma, diz usuário inválido",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.951
+          },
+          {
+            "message": "quero cancelar minha bolsa",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.7372
+          },
+          {
+            "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.9998
+          },
+          {
+            "message": "o curso de direito é presencial ou EAD?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9983
+          },
+          {
+            "message": "quantos anos dura o curso de engenharia civil?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9988
+          },
+          {
+            "message": "o diploma do EAD vale igual ao presencial?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.4898
+          },
+          {
+            "message": "mano o negocio de pagar ta dando erro no cartao",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9994
+          },
+          {
+            "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.6949
+          },
+          {
+            "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+            "gold": "academico",
+            "pred": "financeiro",
+            "confidence": 0.6351
+          },
+          {
+            "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+            "gold": "cancelamento",
+            "pred": "financeiro",
+            "confidence": 0.9947
+          },
+          {
+            "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9533
+          },
+          {
+            "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9372
+          }
+        ]
+      },
+      "no_question_pt": {
+        "correct": 13,
+        "total": 24,
+        "accuracy": 0.5417,
+        "cases": [
+          {
+            "message": "paguei o boleto ontem e ainda aparece como pendente",
+            "gold": "financeiro",
+            "pred": "cancelamento",
+            "confidence": 0.499
+          },
+          {
+            "message": "fui cobrado duas vezes no cartão esse mês",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9019
+          },
+          {
+            "message": "qual a chave pix pra pagar a primeira mensalidade?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9938
+          },
+          {
+            "message": "o boleto de outubro nao chegou no meu email",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.6986
+          },
+          {
+            "message": "quais documentos eu preciso mandar pra fazer a matrícula?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9854
+          },
+          {
+            "message": "já mandei meu RG e o histórico, falta alguma coisa?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9703
+          },
+          {
+            "message": "quando é a prova do vestibular de administração?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9877
+          },
+          {
+            "message": "quanto fica a mensalidade de enfermagem com a bolsa?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.7693
+          },
+          {
+            "message": "tem desconto maior pra psicologia noturno?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.7427
+          },
+          {
+            "message": "vi que na outra faculdade tá mais barato, vcs cobrem?",
+            "gold": "bolsa",
+            "pred": "financeiro",
+            "confidence": 0.6992
+          },
+          {
+            "message": "esqueci minha senha do portal do aluno",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.967
+          },
+          {
+            "message": "o app não abre, fica só carregando",
+            "gold": "acesso",
+            "pred": "matricula",
+            "confidence": 0.6603
+          },
+          {
+            "message": "não consigo entrar na plataforma, diz usuário inválido",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.9726
+          },
+          {
+            "message": "quero cancelar minha bolsa",
+            "gold": "cancelamento",
+            "pred": "bolsa",
+            "confidence": 0.6467
+          },
+          {
+            "message": "desisti do curso, como faço pra pegar meu dinheiro de volta?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.8201
+          },
+          {
+            "message": "o curso de direito é presencial ou EAD?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9869
+          },
+          {
+            "message": "quantos anos dura o curso de engenharia civil?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9987
+          },
+          {
+            "message": "o diploma do EAD vale igual ao presencial?",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.9824
+          },
+          {
+            "message": "mano o negocio de pagar ta dando erro no cartao",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.992
+          },
+          {
+            "message": "n consigo logar e o boleto vence amanha, preciso da 2 via",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.7721
+          },
+          {
+            "message": "não quero cancelar não, só quero saber se consigo trocar pro noturno",
+            "gold": "academico",
+            "pred": "matricula",
+            "confidence": 0.7147
+          },
+          {
+            "message": "minha mãe perdeu o emprego, não vou conseguir continuar pagando",
+            "gold": "cancelamento",
+            "pred": "financeiro",
+            "confidence": 0.9973
+          },
+          {
+            "message": "se eu mandar os documentos hoje ainda pego a bolsa de 60%?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9422
+          },
+          {
+            "message": "to pensando em desistir pq achei caro, tem como baixar o valor?",
+            "gold": "bolsa",
+            "pred": "academico",
+            "confidence": 0.5371
+          }
+        ]
+      },
+      "translated_en": {
+        "correct": 18,
+        "total": 24,
+        "accuracy": 0.75,
+        "cases": [
+          {
+            "message": "I paid the bank slip yesterday and it still shows as pending",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9989
+          },
+          {
+            "message": "I was charged twice on my card this month",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.6488
+          },
+          {
+            "message": "what is the Pix key to pay the first monthly fee?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.6091
+          },
+          {
+            "message": "the October bank slip did not arrive in my email",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9578
+          },
+          {
+            "message": "which documents do I need to send to enroll?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 1.0
+          },
+          {
+            "message": "I already sent my ID and transcript, is anything missing?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9996
+          },
+          {
+            "message": "when is the entrance exam for business administration?",
+            "gold": "matricula",
+            "pred": "academico",
+            "confidence": 0.9519
+          },
+          {
+            "message": "how much is the nursing monthly fee with the scholarship?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9641
+          },
+          {
+            "message": "is there a bigger discount for evening psychology?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9919
+          },
+          {
+            "message": "I saw it's cheaper at another college, can you match it?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 1.0
+          },
+          {
+            "message": "I forgot my student portal password",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.969
+          },
+          {
+            "message": "the app won't open, it just keeps loading",
+            "gold": "acesso",
+            "pred": "academico",
+            "confidence": 0.9078
+          },
+          {
+            "message": "I can't log in to the platform, it says invalid user",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.979
+          },
+          {
+            "message": "I want to cancel my scholarship",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.5051
+          },
+          {
+            "message": "I gave up on the course, how do I get my money back?",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.5934
+          },
+          {
+            "message": "is the law degree in person or online?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9896
+          },
+          {
+            "message": "how many years does the civil engineering degree take?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9998
+          },
+          {
+            "message": "is the online diploma worth the same as the in-person one?",
+            "gold": "academico",
+            "pred": "bolsa",
+            "confidence": 0.9957
+          },
+          {
+            "message": "dude the payment thing keeps failing on my card",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.7748
+          },
+          {
+            "message": "can't log in and the slip is due tomorrow, I need a new copy",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.8809
+          },
+          {
+            "message": "I don't want to cancel, I just want to know if I can switch to evening classes",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9999
+          },
+          {
+            "message": "my mom lost her job, I won't be able to keep paying",
+            "gold": "cancelamento",
+            "pred": "financeiro",
+            "confidence": 0.9277
+          },
+          {
+            "message": "if I send the documents today can I still get the 60% scholarship?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.998
+          },
+          {
+            "message": "thinking about quitting because it's expensive, can you lower the price?",
+            "gold": "bolsa",
+            "pred": "matricula",
+            "confidence": 0.8858
+          }
+        ]
+      },
+      "translated_en_short": {
+        "correct": 14,
+        "total": 24,
+        "accuracy": 0.5833,
+        "cases": [
+          {
+            "message": "I paid the bank slip yesterday and it still shows as pending",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.4259
+          },
+          {
+            "message": "I was charged twice on my card this month",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.9181
+          },
+          {
+            "message": "what is the Pix key to pay the first monthly fee?",
+            "gold": "financeiro",
+            "pred": "financeiro",
+            "confidence": 0.8105
+          },
+          {
+            "message": "the October bank slip did not arrive in my email",
+            "gold": "financeiro",
+            "pred": "academico",
+            "confidence": 0.4066
+          },
+          {
+            "message": "which documents do I need to send to enroll?",
+            "gold": "matricula",
+            "pred": "matricula",
+            "confidence": 0.9997
+          },
+          {
+            "message": "I already sent my ID and transcript, is anything missing?",
+            "gold": "matricula",
+            "pred": "academico",
+            "confidence": 0.999
+          },
+          {
+            "message": "when is the entrance exam for business administration?",
+            "gold": "matricula",
+            "pred": "academico",
+            "confidence": 0.5306
+          },
+          {
+            "message": "how much is the nursing monthly fee with the scholarship?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9972
+          },
+          {
+            "message": "is there a bigger discount for evening psychology?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.8989
+          },
+          {
+            "message": "I saw it's cheaper at another college, can you match it?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9998
+          },
+          {
+            "message": "I forgot my student portal password",
+            "gold": "acesso",
+            "pred": "academico",
+            "confidence": 0.8421
+          },
+          {
+            "message": "the app won't open, it just keeps loading",
+            "gold": "acesso",
+            "pred": "academico",
+            "confidence": 0.2225
+          },
+          {
+            "message": "I can't log in to the platform, it says invalid user",
+            "gold": "acesso",
+            "pred": "acesso",
+            "confidence": 0.4673
+          },
+          {
+            "message": "I want to cancel my scholarship",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.9969
+          },
+          {
+            "message": "I gave up on the course, how do I get my money back?",
+            "gold": "cancelamento",
+            "pred": "academico",
+            "confidence": 0.6566
+          },
+          {
+            "message": "is the law degree in person or online?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.9812
+          },
+          {
+            "message": "how many years does the civil engineering degree take?",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.8581
+          },
+          {
+            "message": "is the online diploma worth the same as the in-person one?",
+            "gold": "academico",
+            "pred": "bolsa",
+            "confidence": 0.9893
+          },
+          {
+            "message": "dude the payment thing keeps failing on my card",
+            "gold": "financeiro",
+            "pred": "cancelamento",
+            "confidence": 0.2477
+          },
+          {
+            "message": "can't log in and the slip is due tomorrow, I need a new copy",
+            "gold": "financeiro",
+            "pred": "matricula",
+            "confidence": 0.6355
+          },
+          {
+            "message": "I don't want to cancel, I just want to know if I can switch to evening classes",
+            "gold": "academico",
+            "pred": "academico",
+            "confidence": 0.6757
+          },
+          {
+            "message": "my mom lost her job, I won't be able to keep paying",
+            "gold": "cancelamento",
+            "pred": "cancelamento",
+            "confidence": 0.9042
+          },
+          {
+            "message": "if I send the documents today can I still get the 60% scholarship?",
+            "gold": "matricula",
+            "pred": "bolsa",
+            "confidence": 0.997
+          },
+          {
+            "message": "thinking about quitting because it's expensive, can you lower the price?",
+            "gold": "bolsa",
+            "pred": "bolsa",
+            "confidence": 0.9993
+          }
+        ]
+      }
+    },
+    "sentiment": {
+      "original_pt": {
+        "correct": 2,
+        "total": 8,
+        "accuracy": 0.25,
+        "cases": [
+          {
+            "message": "muito obrigada, consegui minha bolsa!!",
+            "gold": "positivo",
+            "pred": "neutro",
+            "confidence": 0.6966
+          },
+          {
+            "message": "amei o atendimento, recomendo",
+            "gold": "positivo",
+            "pred": "neutro",
+            "confidence": 0.9405
+          },
+          {
+            "message": "qual o endereço do campus centro?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.9998
+          },
+          {
+            "message": "a aula começa que dia?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.9425
+          },
+          {
+            "message": "to muito chateado, ninguém resolve meu problema",
+            "gold": "negativo",
+            "pred": "neutro",
+            "confidence": 0.7599
+          },
+          {
+            "message": "que palhaçada, cobraram errado de novo",
+            "gold": "negativo",
+            "pred": "neutro",
+            "confidence": 0.9933
+          },
+          {
+            "message": "parabéns pela demora, ótimo serviço 👏",
+            "gold": "negativo",
+            "pred": "positivo",
+            "confidence": 0.8989
+          },
+          {
+            "message": "não é que foi bom mesmo? achei que ia dar errado",
+            "gold": "positivo",
+            "pred": "neutro",
+            "confidence": 0.643
+          }
+        ]
+      },
+      "short_pt": {
+        "correct": 5,
+        "total": 8,
+        "accuracy": 0.625,
+        "cases": [
+          {
+            "message": "muito obrigada, consegui minha bolsa!!",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9276
+          },
+          {
+            "message": "amei o atendimento, recomendo",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9482
+          },
+          {
+            "message": "qual o endereço do campus centro?",
+            "gold": "neutro",
+            "pred": "positivo",
+            "confidence": 0.8955
+          },
+          {
+            "message": "a aula começa que dia?",
+            "gold": "neutro",
+            "pred": "positivo",
+            "confidence": 0.8938
+          },
+          {
+            "message": "to muito chateado, ninguém resolve meu problema",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.8939
+          },
+          {
+            "message": "que palhaçada, cobraram errado de novo",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.623
+          },
+          {
+            "message": "parabéns pela demora, ótimo serviço 👏",
+            "gold": "negativo",
+            "pred": "positivo",
+            "confidence": 0.9999
+          },
+          {
+            "message": "não é que foi bom mesmo? achei que ia dar errado",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9362
+          }
+        ]
+      },
+      "labels_en_msg_pt": {
+        "correct": 5,
+        "total": 8,
+        "accuracy": 0.625,
+        "cases": [
+          {
+            "message": "muito obrigada, consegui minha bolsa!!",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 1.0
+          },
+          {
+            "message": "amei o atendimento, recomendo",
+            "gold": "positivo",
+            "pred": "neutro",
+            "confidence": 0.9172
+          },
+          {
+            "message": "qual o endereço do campus centro?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 1.0
+          },
+          {
+            "message": "a aula começa que dia?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.9076
+          },
+          {
+            "message": "to muito chateado, ninguém resolve meu problema",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.9999
+          },
+          {
+            "message": "que palhaçada, cobraram errado de novo",
+            "gold": "negativo",
+            "pred": "neutro",
+            "confidence": 0.7748
+          },
+          {
+            "message": "parabéns pela demora, ótimo serviço 👏",
+            "gold": "negativo",
+            "pred": "positivo",
+            "confidence": 1.0
+          },
+          {
+            "message": "não é que foi bom mesmo? achei que ia dar errado",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "clean_pt": {
+        "correct": 3,
+        "total": 8,
+        "accuracy": 0.375,
+        "cases": [
+          {
+            "message": "muito obrigada, consegui minha bolsa!!",
+            "gold": "positivo",
+            "pred": "negativo",
+            "confidence": 0.7984
+          },
+          {
+            "message": "amei o atendimento, recomendo",
+            "gold": "positivo",
+            "pred": "negativo",
+            "confidence": 0.7465
+          },
+          {
+            "message": "qual o endereço do campus centro?",
+            "gold": "neutro",
+            "pred": "negativo",
+            "confidence": 0.5583
+          },
+          {
+            "message": "a aula começa que dia?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.5401
+          },
+          {
+            "message": "to muito chateado, ninguém resolve meu problema",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.505
+          },
+          {
+            "message": "que palhaçada, cobraram errado de novo",
+            "gold": "negativo",
+            "pred": "neutro",
+            "confidence": 0.9968
+          },
+          {
+            "message": "parabéns pela demora, ótimo serviço 👏",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.9929
+          },
+          {
+            "message": "não é que foi bom mesmo? achei que ia dar errado",
+            "gold": "positivo",
+            "pred": "negativo",
+            "confidence": 0.6598
+          }
+        ]
+      },
+      "translated_en": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "cases": [
+          {
+            "message": "thank you so much, I got my scholarship!!",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 1.0
+          },
+          {
+            "message": "loved the service, I recommend it",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 1.0
+          },
+          {
+            "message": "what is the address of the downtown campus?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.9941
+          },
+          {
+            "message": "what day do classes start?",
+            "gold": "neutro",
+            "pred": "neutro",
+            "confidence": 0.9535
+          },
+          {
+            "message": "I'm really upset, nobody solves my problem",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.9396
+          },
+          {
+            "message": "what a joke, they charged me wrong again",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 1.0
+          },
+          {
+            "message": "congrats on the delay, great service 👏",
+            "gold": "negativo",
+            "pred": "positivo",
+            "confidence": 1.0
+          },
+          {
+            "message": "wasn't it actually good? I thought it would go wrong",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "translated_en_short": {
+        "correct": 5,
+        "total": 8,
+        "accuracy": 0.625,
+        "cases": [
+          {
+            "message": "thank you so much, I got my scholarship!!",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9994
+          },
+          {
+            "message": "loved the service, I recommend it",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9992
+          },
+          {
+            "message": "what is the address of the downtown campus?",
+            "gold": "neutro",
+            "pred": "positivo",
+            "confidence": 0.6408
+          },
+          {
+            "message": "what day do classes start?",
+            "gold": "neutro",
+            "pred": "positivo",
+            "confidence": 0.9984
+          },
+          {
+            "message": "I'm really upset, nobody solves my problem",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.9147
+          },
+          {
+            "message": "what a joke, they charged me wrong again",
+            "gold": "negativo",
+            "pred": "negativo",
+            "confidence": 0.8287
+          },
+          {
+            "message": "congrats on the delay, great service 👏",
+            "gold": "negativo",
+            "pred": "positivo",
+            "confidence": 0.9999
+          },
+          {
+            "message": "wasn't it actually good? I thought it would go wrong",
+            "gold": "positivo",
+            "pred": "positivo",
+            "confidence": 0.9958
+          }
+        ]
+      }
+    }
+  },
+  "holdout": {
+    "routing_original": {
+      "correct": 3,
+      "total": 16,
+      "accuracy": 0.1875,
+      "cases": [
+        {
+          "message": "o pix que eu fiz não caiu ainda",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.6293
+        },
+        {
+          "message": "dá pra parcelar a matrícula no cartão?",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.9502
+        },
+        {
+          "message": "minha fatura veio com valor diferente do combinado",
+          "gold": "financeiro",
+          "pred": "matricula",
+          "confidence": 0.7693
+        },
+        {
+          "message": "preciso autenticar o diploma do ensino médio pra enviar?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9999
+        },
+        {
+          "message": "até quando posso fazer a inscrição do vestibular?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9703
+        },
+        {
+          "message": "mandei a foto do comprovante de residência, chegou?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9997
+        },
+        {
+          "message": "qual a porcentagem de desconto em fisioterapia?",
+          "gold": "bolsa",
+          "pred": "matricula",
+          "confidence": 0.9821
+        },
+        {
+          "message": "essa bolsa vale pro curso todo ou só primeiro semestre?",
+          "gold": "bolsa",
+          "pred": "matricula",
+          "confidence": 0.7139
+        },
+        {
+          "message": "o código de verificação não chega no meu celular",
+          "gold": "acesso",
+          "pred": "matricula",
+          "confidence": 0.5306
+        },
+        {
+          "message": "minha conta foi bloqueada depois de errar a senha",
+          "gold": "acesso",
+          "pred": "cancelamento",
+          "confidence": 0.8965
+        },
+        {
+          "message": "quero desistir da vaga e receber o que paguei",
+          "gold": "cancelamento",
+          "pred": "financeiro",
+          "confidence": 0.9619
+        },
+        {
+          "message": "como faço pra trancar e não pagar mais?",
+          "gold": "cancelamento",
+          "pred": "financeiro",
+          "confidence": 0.9724
+        },
+        {
+          "message": "administração tem aula sábado?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.9897
+        },
+        {
+          "message": "o curso de TI tem estágio obrigatório?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.9569
+        },
+        {
+          "message": "quantas horas por semana de aula tem no EAD?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.9976
+        },
+        {
+          "message": "o curso é reconhecido pelo MEC?",
+          "gold": "academico",
+          "pred": "matricula",
+          "confidence": 0.9812
+        }
+      ]
+    },
+    "routing_clean": {
+      "correct": 12,
+      "total": 16,
+      "accuracy": 0.75,
+      "cases": [
+        {
+          "message": "o pix que eu fiz não caiu ainda",
+          "gold": "financeiro",
+          "pred": "academico",
+          "confidence": 0.5482
+        },
+        {
+          "message": "dá pra parcelar a matrícula no cartão?",
+          "gold": "financeiro",
+          "pred": "financeiro",
+          "confidence": 0.9991
+        },
+        {
+          "message": "minha fatura veio com valor diferente do combinado",
+          "gold": "financeiro",
+          "pred": "financeiro",
+          "confidence": 0.5184
+        },
+        {
+          "message": "preciso autenticar o diploma do ensino médio pra enviar?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9979
+        },
+        {
+          "message": "até quando posso fazer a inscrição do vestibular?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.6869
+        },
+        {
+          "message": "mandei a foto do comprovante de residência, chegou?",
+          "gold": "matricula",
+          "pred": "matricula",
+          "confidence": 0.9999
+        },
+        {
+          "message": "qual a porcentagem de desconto em fisioterapia?",
+          "gold": "bolsa",
+          "pred": "financeiro",
+          "confidence": 0.6847
+        },
+        {
+          "message": "essa bolsa vale pro curso todo ou só primeiro semestre?",
+          "gold": "bolsa",
+          "pred": "bolsa",
+          "confidence": 0.6031
+        },
+        {
+          "message": "o código de verificação não chega no meu celular",
+          "gold": "acesso",
+          "pred": "acesso",
+          "confidence": 0.9948
+        },
+        {
+          "message": "minha conta foi bloqueada depois de errar a senha",
+          "gold": "acesso",
+          "pred": "acesso",
+          "confidence": 0.9983
+        },
+        {
+          "message": "quero desistir da vaga e receber o que paguei",
+          "gold": "cancelamento",
+          "pred": "financeiro",
+          "confidence": 0.9572
+        },
+        {
+          "message": "como faço pra trancar e não pagar mais?",
+          "gold": "cancelamento",
+          "pred": "financeiro",
+          "confidence": 0.7955
+        },
+        {
+          "message": "administração tem aula sábado?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9964
+        },
+        {
+          "message": "o curso de TI tem estágio obrigatório?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9998
+        },
+        {
+          "message": "quantas horas por semana de aula tem no EAD?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9882
+        },
+        {
+          "message": "o curso é reconhecido pelo MEC?",
+          "gold": "academico",
+          "pred": "academico",
+          "confidence": 0.9852
+        }
+      ]
+    },
+    "sentiment_original": {
+      "correct": 3,
+      "total": 6,
+      "accuracy": 0.5,
+      "cases": [
+        {
+          "message": "valeu demais pela ajuda, vcs são top",
+          "gold": "positivo",
+          "pred": "neutro",
+          "confidence": 0.6392
+        },
+        {
+          "message": "fiquei muito feliz com o desconto",
+          "gold": "positivo",
+          "pred": "positivo",
+          "confidence": 0.9551
+        },
+        {
+          "message": "qual o telefone da secretaria?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.9997
+        },
+        {
+          "message": "preciso levar documento original no dia?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.9825
+        },
+        {
+          "message": "já é a terceira vez que peço e nada",
+          "gold": "negativo",
+          "pred": "neutro",
+          "confidence": 0.8965
+        },
+        {
+          "message": "to decepcionado, prometeram uma coisa e fizeram outra",
+          "gold": "negativo",
+          "pred": "neutro",
+          "confidence": 0.8113
+        }
+      ]
+    },
+    "sentiment_clean": {
+      "correct": 2,
+      "total": 6,
+      "accuracy": 0.3333,
+      "cases": [
+        {
+          "message": "valeu demais pela ajuda, vcs são top",
+          "gold": "positivo",
+          "pred": "negativo",
+          "confidence": 0.9421
+        },
+        {
+          "message": "fiquei muito feliz com o desconto",
+          "gold": "positivo",
+          "pred": "negativo",
+          "confidence": 0.9939
+        },
+        {
+          "message": "qual o telefone da secretaria?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.991
+        },
+        {
+          "message": "preciso levar documento original no dia?",
+          "gold": "neutro",
+          "pred": "neutro",
+          "confidence": 0.5506
+        },
+        {
+          "message": "já é a terceira vez que peço e nada",
+          "gold": "negativo",
+          "pred": "neutro",
+          "confidence": 0.5899
+        },
+        {
+          "message": "to decepcionado, prometeram uma coisa e fizeram outra",
+          "gold": "negativo",
+          "pred": "neutro",
+          "confidence": 0.999
+        }
+      ]
+    }
+  },
+  "official_reproduction": {
+    "source": ".julia/typed-cpu-133126/results.json",
+    "by_type": {
+      "choice": {
+        "count": 600,
+        "correct": 426,
+        "accuracy": 0.71
+      },
+      "noul": {
+        "count": 600,
+        "correct": 483,
+        "accuracy": 0.805
+      },
+      "score": {
+        "count": 800,
+        "correct": 542,
+        "accuracy": 0.6775
+      }
+    },
+    "readme_cpu_fp32": {
+      "choice": "426/600",
+      "score": "542/800",
+      "noul": "483/600"
+    }
+  }
+}
